@@ -16,8 +16,9 @@ Point::Point(int x, int y)
 
 Point::Point(const Point& other)
 {
-	delete _coord;
-	_coord = other._coord;
+	this->_coord = new int[2];
+	this->_coord[0] = other.getX();
+	this->_coord[1] = other.getY();
 }
 
 Point::~Point()
@@ -27,9 +28,10 @@ Point::~Point()
 
 Point& Point::operator=(const Point& other)
 {
-	delete _coord;
-	_coord = new int[2];
-	memcpy(_coord, other._coord, 2);
+	if (this == &other)
+		return *this;
+	this->_coord[0] = other._coord[0];
+	this->_coord[1] = other._coord[1];
 	return *this;
 }
 
